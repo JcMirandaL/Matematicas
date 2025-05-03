@@ -13,6 +13,7 @@ function sumar(a, b) {
     return a * b;
   }
   
+  //nota: la multiplicación se puede hacer con el operador * o con la función Math.imul
   function dividir(a, b) {
     if (b === 0) throw new Error("División por cero");
     return a / b;
