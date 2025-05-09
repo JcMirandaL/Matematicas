@@ -1,42 +1,34 @@
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
+# Este archivo configura un workflow de GitHub Actions para proyectos que usan Deno.
 
-# This workflow will install Deno then run `deno lint` and `deno test`.
-# For more information see: https://github.com/denoland/setup-deno
+name: Deno # Nombre del workflow
 
-name: Deno
-
-on:
-  push:
+on: # Define los eventos que activan este workflow
+  push: # Se ejecuta cuando hay un push a la rama principal
     branches: ["main"]
-  pull_request:
+  pull_request: # Se ejecuta cuando se crea o actualiza un pull request hacia la rama principal
     branches: ["main"]
 
-permissions:
-  contents: read
+permissions: # Define los permisos para este workflow
+  contents: read # Permite leer el contenido del repositorio
 
-jobs:
-  test:
-    runs-on: ubuntu-latest
+jobs: # Define los trabajos que se ejecutarán en este workflow
+  test: # Nombre del trabajo
+    runs-on: ubuntu-latest # El trabajo se ejecutará en un contenedor con Ubuntu
 
-    steps:
-      - name: Setup repo
-        uses: actions/checkout@v4
+    steps: # Pasos que se ejecutarán en este trabajo
+      - name: Checkout repository # Paso para clonar el repositorio
+        uses: actions/checkout@v4 # Acción oficial de GitHub para clonar el repositorio
 
-      - name: Setup Deno
-        # uses: denoland/setup-deno@v1
-        uses: denoland/setup-deno@61fe2df320078202e33d7d5ad347e7dcfa0e8f31  # v1.1.2
+      - name: Setup Deno # Paso para instalar Deno
+        uses: denoland/setup-deno@v1.1.2 # Acción oficial para configurar Deno
         with:
-          deno-version: v1.x
+          deno-version: v1.x # Instala la última versión estable de Deno
 
-      # Uncomment this step to verify the use of 'deno fmt' on each commit.
-      # - name: Verify formatting
-      #   run: deno fmt --check
+      - name: Verify formatting # Paso para verificar el formato del código
+        run: deno fmt --check # Comprueba si el código está formateado correctamente
 
-      - name: Run linter
-        run: deno lint
+      - name: Run linter # Paso para ejecutar el linter
+        run: deno lint # Analiza el código en busca de problemas de estilo o errores
 
-      - name: Run tests
-        run: deno test -A
+      - name: Run tests # Paso para ejecutar las pruebas
+        run: deno test --allow-all # Ejecuta las pruebas con todos los permisos habilitados
