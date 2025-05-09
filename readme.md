@@ -1,6 +1,7 @@
 # Calculadora JS
 
-Una calculadora simple implementada en JavaScript que permite realizar operaciones básicas.
+Una calculadora simple implementada en JavaScript que permite realizar
+operaciones básicas.
 
 ## Características
 
@@ -15,3 +16,4 @@ Clona el repositorio:
 ```bash
 git clone https://github.com/tu_usuario/calculadora-js.git
 cd calculadora-js
+```
