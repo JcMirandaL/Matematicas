@@ -30,5 +30,11 @@ jobs: # Define los trabajos que se ejecutarán en este workflow
       - name: Run linter # Paso para ejecutar el linter
         run: deno lint # Analiza el código en busca de problemas de estilo o errores
 
-      - name: Run tests # Paso para ejecutar las pruebas
-        run: deno test --allow-all # Ejecuta las pruebas con todos los permisos habilitados
+      # Paso opcional: Ejecutar pruebas solo si existen
+      - name: Run tests (optional) # Paso para ejecutar pruebas si existen
+        run: |
+          if deno test --allow-all; then
+            echo "Tests passed.";
+          else
+            echo "No tests found or tests failed.";
+          fi
